@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATES_PATH = '/vagrant/web_ide/web_ide/templates'
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'web_ide.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_PATH],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,3 +102,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+GITHUB_CLIENT_ID = 'ae0dc5375f83cb4b6cd2'
