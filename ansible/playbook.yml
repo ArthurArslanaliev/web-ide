@@ -1,0 +1,15 @@
+---
+- hosts: all
+  sudo: true
+  vars_files:
+    - common/vars/common.yml
+    - uwsgi/vars/default.yml
+    - nginx/vars/default.yml
+  tasks:
+    - include: common/tasks/common.yml
+    - include: uwsgi/tasks/uwsgi.yml
+    - include: nginx/tasks/nginx.yml
+    - include: nginx/tasks/nginx_uwsgi.yml
+  handlers:
+    - include: uwsgi/handlers/uwsgi.yml
+    - include: nginx/handlers/nginx.yml

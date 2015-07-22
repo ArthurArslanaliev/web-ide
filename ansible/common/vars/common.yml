@@ -1,0 +1,2 @@
+virtualenv_path: /home/vagrant/ENV
+log_folder: /vagrant/web_ide_log

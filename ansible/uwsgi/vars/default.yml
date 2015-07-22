@@ -1,0 +1,5 @@
+chdir: /vagrant/web_ide
+home: /home/vagrant/ENV
+wsgi_file: /vagrant/web_ide/web_ide/wsgi.py
+uwsgi_conf_file: web_ide.ini
+uwsgi_log_folder: "{{ log_folder }}/uwsgi"

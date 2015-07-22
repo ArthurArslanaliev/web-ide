@@ -1,0 +1,26 @@
+- name: update apt cache
+  apt: update_cache=yes
+
+- name: install python development files
+  apt: name=python-dev
+
+- name: install pip
+  apt: name=python-pip state=present
+
+- name: install virtualenv
+  pip: name=virtualenv
+
+- name: create virtualenv
+  command: virtualenv {{ virtualenv_path }}
+
+- name: install django into virtualenv
+  pip: name=Django virtualenv={{ virtualenv_path }}
+
+- name: install django-rest-framework
+  pip: name=djangorestframework virtualenv={{ virtualenv_path }}
+
+- name: install markdown
+  pip: name=markdown virtualenv={{ virtualenv_path }}
+
+- name: create log folder
+  file: path={{ log_folder }} state=directory
