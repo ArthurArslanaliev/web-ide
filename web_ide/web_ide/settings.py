@@ -103,4 +103,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+APP_URL = 'http://localhost:8080'
+
 

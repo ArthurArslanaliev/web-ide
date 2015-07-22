@@ -1,9 +1,10 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.views.generic import TemplateView
+
+from web_ide.views import Index
 
 urlpatterns = [
-    url(r'^$', TemplateView.as_view(template_name='index.html')),
+    url(r'^$', Index.as_view()),
     url(r'^github/', include('web_ide.github.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
