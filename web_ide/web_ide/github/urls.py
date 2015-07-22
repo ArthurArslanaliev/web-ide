@@ -1,4 +1,5 @@
-from django.conf.urls import include, url
+from django.conf.urls import url
+
 from web_ide.github.views import LoginView
 
 urlpatterns = [

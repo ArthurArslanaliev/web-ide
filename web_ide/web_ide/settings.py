@@ -104,4 +104,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-GITHUB_CLIENT_ID = 'ae0dc5375f83cb4b6cd2'
