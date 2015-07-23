@@ -62,3 +62,6 @@ target/
 
 # Vagrant
 .vagrant/
+
+# secret keys
+web_ide/web_ide/github/keys.py

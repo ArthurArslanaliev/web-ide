@@ -1,5 +1,8 @@
-AUTH_URL = 'https://github.com/login/oauth/authorize'
+BASE_URL = 'https://github.com/login/oauth'
+
+AUTH_URL = '{}/{}'.format(BASE_URL, 'authorize')
+ACCESS_TOKEN_URL = '{}/{}'.format(BASE_URL, 'access_token')
 
 SCOPES = ['user:email', 'public_repo']
 
-CLIENT_ID = 'ae0dc5375f83cb4b6cd2'
+

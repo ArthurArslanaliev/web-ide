@@ -13,14 +13,8 @@
 - name: create virtualenv
   command: virtualenv {{ virtualenv_path }}
 
-- name: install django into virtualenv
-  pip: name=Django virtualenv={{ virtualenv_path }}
-
-- name: install django-rest-framework
-  pip: name=djangorestframework virtualenv={{ virtualenv_path }}
-
-- name: install markdown
-  pip: name=markdown virtualenv={{ virtualenv_path }}
+- name: install app requirements
+  pip: requirements={{ requirements_file_path }} virtualenv={{ virtualenv_path }}
 
 - name: create log folder
   file: path={{ log_folder }} state=directory

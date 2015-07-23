@@ -1,13 +1,28 @@
 import urllib
+import requests
 
 
-class LoginRequest:
-    def __init__(self, github_url, client_id, scopes):
-        self.github_url = github_url
-        self.client_id = client_id
-        self.scopes = scopes
+class AuthRequest:
+    def __init__(self, url, client_id, scopes):
+        self.__github_url = url
+        self.__client_id = client_id
+        self.__scopes = scopes
 
     def get_absolute_url(self):
-        args = {'client_id': self.client_id, 'scope': ','.join(self.scopes)}
-        url = '{}?{}'.format(self.github_url, urllib.urlencode(args))
+        query = {'client_id': self.__client_id, 'scope': ','.join(self.__scopes)}
+        url = '{}?{}'.format(self.__github_url, urllib.urlencode(query))
         return url
+
+
+class AccessTokenRequest:
+    def __init__(self, url, client_id, client_secret, code):
+        self.__url = url
+        self.__client_id = client_id
+        self.__client_secret = client_secret
+        self.__code = code
+
+    def get_token(self):
+        body = {'client_id': self.__client_id, 'client_secret': self.__client_secret, 'code': self.__code}
+        resp = requests.post(self.__url, body)
+        return resp.json()['access_token']
+

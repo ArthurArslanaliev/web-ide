@@ -2,7 +2,7 @@ import urllib
 
 from django.test import TestCase
 
-from web_ide.github.models import LoginRequest
+from web_ide.github.models import AuthRequest
 
 
 class LoginRequestTest(TestCase):
@@ -12,7 +12,7 @@ class LoginRequestTest(TestCase):
         scope = 'user'
         expected_url = '{}?scope={}&client_id={}'.format(github_url, scope, client_id)
 
-        request = LoginRequest(github_url, client_id, [scope])
+        request = AuthRequest(github_url, client_id, [scope])
         actual_url = request.get_absolute_url()
 
         self.assertEqual(urllib.unquote(actual_url), expected_url)

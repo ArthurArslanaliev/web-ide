@@ -1,2 +1,3 @@
 virtualenv_path: /home/vagrant/ENV
 log_folder: /vagrant/web_ide_log
+requirements_file_path: /vagrant/web_ide/requirements.txt
