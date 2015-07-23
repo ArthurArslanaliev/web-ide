@@ -16,8 +16,10 @@ class AuthView(APIView):
 class CallbackView(APIView):
     def get(self, request):
         if 'code' in request.query_params:
-            request = AccessTokenRequest(ACCESS_TOKEN_URL, CLIENT_ID, SECRET_KEY, request.query_params['code'])
-            token = request.get_token()
-
+            access_token_request = AccessTokenRequest(ACCESS_TOKEN_URL, CLIENT_ID, SECRET_KEY,
+                                                      request.query_params['code'])
+            access_token = access_token_request.get_token()
+            request.session['access_token'] = access_token
+            return redirect('/')
         else:
             raise Exception()

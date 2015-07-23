@@ -10,6 +10,8 @@
     - include: uwsgi/tasks/uwsgi.yml
     - include: nginx/tasks/nginx.yml
     - include: nginx/tasks/nginx_uwsgi.yml
+    - include: memcached/tasks/memcached.yml
   handlers:
     - include: uwsgi/handlers/uwsgi.yml
     - include: nginx/handlers/nginx.yml
+    - include: memcached/handlers/memcached.yml

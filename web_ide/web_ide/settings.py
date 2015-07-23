@@ -83,6 +83,14 @@ DATABASES = {
     }
 }
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -104,5 +112,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 APP_URL = 'http://localhost:8080'
+
 
 

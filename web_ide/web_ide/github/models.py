@@ -1,4 +1,5 @@
 import urllib
+
 import requests
 
 
@@ -23,6 +24,8 @@ class AccessTokenRequest:
 
     def get_token(self):
         body = {'client_id': self.__client_id, 'client_secret': self.__client_secret, 'code': self.__code}
-        resp = requests.post(self.__url, body)
-        return resp.json()['access_token']
+        headers = {'Accept': 'application/json'}
+        resp = requests.post(self.__url, body, headers=headers)
+        access_token = resp.json()['access_token']
+        return access_token
 
