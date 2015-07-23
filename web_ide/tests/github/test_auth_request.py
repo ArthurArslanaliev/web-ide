@@ -5,7 +5,7 @@ from django.test import TestCase
 from web_ide.github.models import AuthRequest
 
 
-class LoginRequestTest(TestCase):
+class AuthRequestTest(TestCase):
     def test_get_absolute_url(self):
         client_id = 'client_id'
         github_url = 'https://github.com/login/oauth/authorize'

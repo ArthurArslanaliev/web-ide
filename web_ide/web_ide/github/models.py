@@ -24,7 +24,7 @@ class AccessTokenRequest:
 
     def get_token(self):
         body = {'client_id': self.__client_id, 'client_secret': self.__client_secret, 'code': self.__code}
-        headers = {'Accept': 'application/json'}
+        headers = {'accept': 'application/json'}
         resp = requests.post(self.__url, body, headers=headers)
         access_token = resp.json()['access_token']
         return access_token
