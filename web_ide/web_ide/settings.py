@@ -92,6 +92,10 @@ CACHES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'web_ide.common.utils.custom_exception_handler'
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
