@@ -5,12 +5,15 @@
     - common/vars/common.yml
     - uwsgi/vars/default.yml
     - nginx/vars/default.yml
+    - nodejs/vars/default.yml
   tasks:
     - include: common/tasks/common.yml
     - include: uwsgi/tasks/uwsgi.yml
     - include: nginx/tasks/nginx.yml
     - include: nginx/tasks/nginx_uwsgi.yml
     - include: memcached/tasks/memcached.yml
+    - include: nodejs/tasks/nodejs.yml
+    - include: nodejs/tasks/packages.yml
   handlers:
     - include: uwsgi/handlers/uwsgi.yml
     - include: nginx/handlers/nginx.yml
