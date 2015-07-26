@@ -14,6 +14,7 @@
     - include: memcached/tasks/memcached.yml
     - include: nodejs/tasks/nodejs.yml
     - include: nodejs/tasks/packages.yml
+    - include: common/tasks/bower.yml
   handlers:
     - include: uwsgi/handlers/uwsgi.yml
     - include: nginx/handlers/nginx.yml

@@ -65,3 +65,5 @@ target/
 
 # secret keys
 web_ide/web_ide/github/keys.py
+
+web_ide/web_ide/static/bower_components/*

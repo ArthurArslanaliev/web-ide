@@ -1,0 +1,2 @@
+- name: install bower dependencies
+  command: bower install --allow-root chdir={{ app_path }}
