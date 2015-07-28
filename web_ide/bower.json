@@ -11,6 +11,10 @@
   ],
   "dependencies": {
     "jquery": "~2.1.4",
-    "angularjs": "~1.4.3"
+    "angularjs": "~1.4.3",
+    "angular-ui-router": "~0.2.15",
+    "normalize.css": "~3.0.3",
+    "html5-boilerplate": "~5.2.0",
+    "bootstrap": "~3.3.5"
   }
 }

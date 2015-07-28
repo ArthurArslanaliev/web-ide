@@ -1,2 +1,8 @@
 - name: install bower
   command: npm install -g bower
+
+- name: install less
+  command: npm install -g less
+
+- name: install less-clean-css
+  command: npm install -g less-plugin-clean-css
