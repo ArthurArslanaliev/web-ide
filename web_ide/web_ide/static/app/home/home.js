@@ -2,7 +2,7 @@
     'use strict';
 
 
-    angular.module('webIde.home', [])
+    angular.module('webIde.home', ['webIde.github'])
 
         .config(config);
 
@@ -19,10 +19,23 @@
             })
     }
 
-    homeController.$inject = ['$scope'];
+    homeController.$inject = ['$rootScope', '$scope', 'GithubAuthService'];
 
-    function homeController($scope) {
+    function homeController($rootScope, $scope, GithubAuthService) {
+        $scope.isUserLoggedIn = false;
+        $scope.user = null;
 
+        $scope.login = GithubAuthService.login;
+        $scope.logout = null;
+
+        activate();
+
+        function activate() {
+            if ($rootScope.$user) {
+                $scope.isUserLoggedIn = true;
+                $scope.user = $rootScope.$user;
+            }
+        }
     }
 
 })();

@@ -1,3 +1,5 @@
+API_URL = 'https://api.github.com/'
+
 BASE_URL = 'https://github.com/login/oauth'
 
 AUTH_URL = '{}/{}'.format(BASE_URL, 'authorize')

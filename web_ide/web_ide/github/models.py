@@ -1,6 +1,7 @@
 import urllib
 
 import requests
+from web_ide.github.utils import GithubRequests
 
 
 class AuthRequest:
@@ -29,3 +30,19 @@ class AccessTokenRequest:
         access_token = resp.json()['access_token']
         return access_token
 
+
+class GithubUser:
+    def __init__(self, user_name, email):
+        self.user_name = user_name
+        self.email = email
+
+
+class GithubUserRequest:
+    def __init__(self, api_url, token):
+        self.__api_url = api_url
+        self.__token = token
+
+    def get(self):
+        resp = GithubRequests(self.__api_url, self.__token).get('user')
+        user_data = resp.json()
+        return GithubUser(user_data['email'], user_data['login'])

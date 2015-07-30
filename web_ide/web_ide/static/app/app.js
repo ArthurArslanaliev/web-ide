@@ -3,7 +3,7 @@
     'use strict';
 
 
-    angular.module('webIde', ['ui.router', 'webIde.home'])
+    angular.module('webIde', ['ui.router', 'webIde.home', 'webIde.github'])
 
         .config(config)
         .run(run);
@@ -16,12 +16,17 @@
         $urlRouterProvider.otherwise("/state1");
     }
 
-    run.$inject = ['$rootScope', '$state', '$stateParams'];
+    run.$inject = ['$rootScope', '$state', '$stateParams', 'webIdeConfig'];
 
-    function run($rootScope, $state, $stateParams) {
+    function run($rootScope, $state, $stateParams, webIdeConfig) {
 
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+
+        $rootScope.$user = {
+            userName: webIdeConfig.USER_NAME,
+            email: webIdeConfig.USER_EMAIL
+        };
 
         $state.go('home');
     }
