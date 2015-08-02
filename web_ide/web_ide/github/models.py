@@ -32,9 +32,9 @@ class AccessTokenRequest:
 
 
 class GithubUser:
-    def __init__(self, user_name, email):
-        self.user_name = user_name
-        self.email = email
+    def __init__(self, login, id):
+        self.login = login
+        self.id = id
 
 
 class GithubUserRequest:
@@ -45,4 +45,5 @@ class GithubUserRequest:
     def get(self):
         resp = GithubRequests(self.__api_url, self.__token).get('user')
         user_data = resp.json()
-        return GithubUser(user_data['email'], user_data['login'])
+
+        return GithubUser(user_data['id'], user_data['login'])

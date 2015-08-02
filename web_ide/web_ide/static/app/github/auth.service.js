@@ -7,9 +7,9 @@
         .service('GithubAuthService', GithubAuthService);
 
 
-    GithubAuthService.$inject = ['$window', 'webIdeConfig'];
+    GithubAuthService.$inject = ['$http', '$window', 'webIdeConfig'];
 
-    function GithubAuthService($window, webIdeConfig) {
+    function GithubAuthService($http, $window, webIdeConfig) {
 
         this.login = function() {
 
@@ -17,7 +17,7 @@
         };
 
         this.logout = function() {
-
+            return $http.post(webIdeConfig.APP_URL + '/github/logout')
         };
     }
 

@@ -24,8 +24,8 @@
         $rootScope.$stateParams = $stateParams;
 
         $rootScope.$user = {
-            userName: webIdeConfig.USER_NAME,
-            email: webIdeConfig.USER_EMAIL
+            userLogin: webIdeConfig.USER_ID,
+            userId: webIdeConfig.USER_LOGIN
         };
 
         $state.go('home');
