@@ -3,8 +3,8 @@
 
 
     angular.module('webIde.home', ['webIde.github'])
-        .config(config);
-
+        .config(config)
+        .controller('homeController', homeController);
 
     config.$inject = ['$stateProvider'];
 
@@ -14,7 +14,7 @@
             .state('home', {
                 url: '/',
                 templateUrl: '/static/app/home/home.html',
-                controller: homeController
+                controller: 'homeController'
             })
     }
 
@@ -31,6 +31,7 @@
         activate();
 
         function activate() {
+
             if ($rootScope.$user.userId && $rootScope.$user.userLogin) {
                 $scope.isUserLoggedIn = true;
                 $scope.user = $rootScope.$user;
@@ -38,6 +39,7 @@
         }
 
         function logout() {
+
             GithubAuthService.logout()
                 .then(function() {
                     $window.location.href = '/';

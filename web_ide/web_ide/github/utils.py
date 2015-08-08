@@ -9,6 +9,7 @@ class GithubRequests:
         self.__token = token
 
     def get(self, resource):
+
         headers = {
             'Authorization': 'token {}'.format(self.__token),
             'Accept': 'application/vnd.github.v3+json'

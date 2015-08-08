@@ -1,6 +1,6 @@
 import urllib
-
 import requests
+
 from web_ide.github.utils import GithubRequests
 
 
@@ -46,4 +46,4 @@ class GithubUserRequest:
         resp = GithubRequests(self.__api_url, self.__token).get('user')
         user_data = resp.json()
 
-        return GithubUser(user_data['id'], user_data['login'])
+        return GithubUser(user_data['login'], user_data['id'])

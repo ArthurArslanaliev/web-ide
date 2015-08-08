@@ -1,9 +1,9 @@
 (function() {
+
     'use strict';
 
 
     angular.module('webIde.github')
-
         .service('GithubAuthService', GithubAuthService);
 
 
@@ -17,6 +17,7 @@
         };
 
         this.logout = function() {
+
             return $http.post(webIdeConfig.APP_URL + '/github/logout')
         };
     }

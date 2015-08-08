@@ -29,7 +29,7 @@ class CallbackView(APIView):
             request.session['access_token'] = access_token
             request.session['user'] = user
 
-            return redirect('/')
+            return redirect('/choose-repository')
         else:
             raise Exception()
 
