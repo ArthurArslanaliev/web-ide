@@ -1,22 +1,10 @@
 (function () {
+
     'use strict';
 
-
-    angular.module('webIde.home', ['webIde.github'])
-        .config(config)
+    angular.module('webIde.home', [])
         .controller('homeController', homeController);
 
-    config.$inject = ['$stateProvider'];
-
-    function config($stateProvider) {
-
-        $stateProvider
-            .state('home', {
-                url: '/',
-                templateUrl: '/static/app/home/home.html',
-                controller: 'homeController'
-            })
-    }
 
     homeController.$inject = ['$rootScope', '$scope', '$window', 'GithubAuthService'];
 

@@ -19,7 +19,7 @@ class GithubUserRequestTest(TestCase):
         github_requests_mock.return_value = get_method_mock
 
         github_user_request = GithubUserRequest(api_url, token)
-        github_user = github_user_request.get()
+        github_user = github_user_request.make()
 
         github_requests_mock.assert_called_once_with(api_url, token)
         get_method_mock.get.assert_called_once_with('user')

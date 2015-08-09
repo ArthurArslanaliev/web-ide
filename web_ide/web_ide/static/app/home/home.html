@@ -3,5 +3,6 @@
     <div ng-if="isUserLoggedIn">Welcome {{ user.userLogin }}!</div>
 </div>
 <div>
-    <button class="btn btn-primary" ng-click="logout()">Logout</button>
+    <button class="btn btn-info" ng-if="isUserLoggedIn" ui-sref="repositories">Get Repositories</button>
+    <button class="btn btn-primary" ng-if="isUserLoggedIn" ng-click="logout()">Logout</button>
 </div>

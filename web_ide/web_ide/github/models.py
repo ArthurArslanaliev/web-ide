@@ -23,7 +23,7 @@ class AccessTokenRequest:
         self.__client_secret = client_secret
         self.__code = code
 
-    def get_token(self):
+    def make(self):
         body = {'client_id': self.__client_id, 'client_secret': self.__client_secret, 'code': self.__code}
         headers = {'accept': 'application/json'}
         resp = requests.post(self.__url, body, headers=headers)
@@ -37,13 +37,44 @@ class GithubUser:
         self.id = id
 
 
+class GithubRepository:
+    def __init__(self, id, full_name, description, clone_url):
+        self.id = id
+        self.full_name = full_name
+        self.description = description
+        self.clone_url = clone_url
+
+    @classmethod
+    def build(cls, raw_repository):
+        return cls(raw_repository['id'],
+                   raw_repository['full_name'],
+                   raw_repository['description'],
+                   raw_repository['clone_url'])
+
+    @staticmethod
+    def serialize(instance):
+        return vars(instance)
+
+
 class GithubUserRequest:
     def __init__(self, api_url, token):
         self.__api_url = api_url
         self.__token = token
 
-    def get(self):
+    def make(self):
         resp = GithubRequests(self.__api_url, self.__token).get('user')
         user_data = resp.json()
 
         return GithubUser(user_data['login'], user_data['id'])
+
+
+class GithubUserRepositoriesRequest:
+    def __init__(self, api_url, token):
+        self.__api_url = api_url
+        self.__token = token
+
+    def make(self):
+        req = GithubRequests(self.__api_url, self.__token)
+        resp = req.get('/user/repos')
+        repositories = resp.json()
+        return map(GithubRepository.build, repositories)

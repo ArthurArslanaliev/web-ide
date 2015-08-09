@@ -2,18 +2,35 @@
 
     'use strict';
 
+    angular.module('webIde', [
+        'ui.router',
 
-    angular.module('webIde', ['ui.router', 'webIde.home', 'webIde.github'])
+        'webIde.home',
+        'webIde.github',
+        'webIde.github.repositories'
+    ])
 
         .config(config)
         .run(run);
 
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider'];
+    config.$inject = ['$urlRouterProvider', '$stateProvider'];
 
-    function config($stateProvider, $urlRouterProvider) {
+    function config($urlRouterProvider, $stateProvider) {
 
-        $urlRouterProvider.otherwise("/state1");
+        $urlRouterProvider.otherwise('/state1');
+
+        $stateProvider
+            .state('home', {
+                url: '/',
+                templateUrl: '/static/app/home/home.html',
+                controller: 'homeController'
+            })
+            .state('repositories', {
+                url: '/choose-repository',
+                templateUrl: '/static/app/github/repositories/choose-repository.html',
+                controller: 'repositoryController'
+            });
     }
 
     run.$inject = ['$rootScope', '$state', '$stateParams', 'webIdeConfig'];
@@ -24,8 +41,8 @@
         $rootScope.$stateParams = $stateParams;
 
         $rootScope.$user = {
-            userLogin: webIdeConfig.USER_ID,
-            userId: webIdeConfig.USER_LOGIN
+            userLogin: webIdeConfig.USER_LOGIN,
+            userId: webIdeConfig.USER_ID
         };
 
         $state.go('home');
