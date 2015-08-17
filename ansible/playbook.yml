@@ -7,6 +7,7 @@
     - nginx/vars/default.yml
     - nodejs/vars/default.yml
     - postgresql/vars/default.yml
+    - phantomjs/vars/default.yml
   tasks:
     - include: common/tasks/common.yml
     - include: uwsgi/tasks/uwsgi.yml
@@ -17,6 +18,7 @@
     - include: nodejs/tasks/packages.yml
     - include: common/tasks/bower.yml
     - include: postgresql/tasks/postgresql.yml
+    - include: phantomjs/tasks/phantomjs.yml
   handlers:
     - include: uwsgi/handlers/uwsgi.yml
     - include: nginx/handlers/nginx.yml

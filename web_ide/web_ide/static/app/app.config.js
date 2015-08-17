@@ -2,17 +2,9 @@
 
     'use strict';
 
-    angular.module('webIde', [
-        'ui.router',
 
-        'webIde.home',
-        'webIde.github',
-        'webIde.github.repositories'
-    ])
-
-        .config(config)
-        .run(run);
-
+    angular.module('webIde')
+        .config(config);
 
     config.$inject = ['$urlRouterProvider', '$stateProvider'];
 
@@ -31,21 +23,6 @@
                 templateUrl: '/static/app/github/repositories/choose-repository.html',
                 controller: 'repositoryController'
             });
-    }
-
-    run.$inject = ['$rootScope', '$state', '$stateParams', 'webIdeConfig'];
-
-    function run($rootScope, $state, $stateParams, webIdeConfig) {
-
-        $rootScope.$state = $state;
-        $rootScope.$stateParams = $stateParams;
-
-        $rootScope.$user = {
-            userLogin: webIdeConfig.USER_LOGIN,
-            userId: webIdeConfig.USER_ID
-        };
-
-        $state.go('home');
     }
 
 })();

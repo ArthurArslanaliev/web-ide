@@ -2,7 +2,8 @@
 
     'use strict';
 
-    angular.module('webIde.home', [])
+
+    angular.module('webIde.home')
         .controller('homeController', homeController);
 
 

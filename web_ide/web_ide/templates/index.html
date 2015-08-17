@@ -26,13 +26,19 @@
 <script type="application/javascript" src="static/bower_components/angular/angular.js"></script>
 <script type="application/javascript" src="static/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
-<script type="application/javascript" src="static/app/app.js"></script>
+<script type="application/javascript" src="static/app/app.module.js"></script>
+<script type="application/javascript" src="static/app/app.config.js"></script>
+<script type="application/javascript" src="static/app/app.run.js"></script>
 
-<script type="application/javascript" src="static/app/home/home.js"></script>
+<script type="application/javascript" src="static/app/home/home.module.js"></script>
+<script type="application/javascript" src="static/app/home/home.controller.js"></script>
 
-<script type="application/javascript" src="static/app/github/module.js"></script>
-<script type="application/javascript" src="static/app/github/auth.service.js"></script>
-<script type="application/javascript" src="static/app/github/repositories/module.js"></script>
+<script type="application/javascript" src="static/app/github/github.module.js"></script>
+<script type="application/javascript" src="static/app/github/github.auth.service.js"></script>
+
+<script type="application/javascript" src="static/app/github/repository/repository.module.js"></script>
+<script type="application/javascript" src="static/app/github/repository/repository.controller.js"></script>
+<script type="application/javascript" src="static/app/github/repository/repository.service.js"></script>
 
 {% include "web_ide_client_config.html" %}
 

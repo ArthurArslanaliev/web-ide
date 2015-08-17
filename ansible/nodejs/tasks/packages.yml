@@ -6,3 +6,9 @@
 
 - name: install less-clean-css
   command: npm install -g less-plugin-clean-css
+
+- name: install karma test runner global runner
+  command: npm install -g karma-cli
+
+- name: install local dev packages
+  command: npm install chdir={{ app_path }}

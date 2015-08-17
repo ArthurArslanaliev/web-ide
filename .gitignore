@@ -69,3 +69,5 @@ web_ide/web_ide/github/keys.py
 web_ide/web_ide/static/bower_components/*
 
 web_ide/web_ide/static/css/*
+
+web_ide/node_modules/*
