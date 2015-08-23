@@ -17,6 +17,7 @@ module.exports = function (config) {
         files: [
             'web_ide/static/bower_components/jquery/dist/jquery.min.js',
             'web_ide/static/bower_components/angular/angular.js',
+            'web_ide/static/bower_components/angular-mocks/angular-mocks.js',
             'web_ide/static/bower_components/angular-ui-router/release/angular-ui-router.min.js',
 
             'web_ide/static/app/app.module.js',

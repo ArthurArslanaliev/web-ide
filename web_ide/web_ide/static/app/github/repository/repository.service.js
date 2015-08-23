@@ -4,7 +4,7 @@
 
 
     angular.module('webIde.github.repository')
-        .service('getRepositoriesService');
+        .service('getRepositoriesService', getRepositoriesService);
 
     getRepositoriesService.$inject = ['$http', 'webIdeConfig'];
 

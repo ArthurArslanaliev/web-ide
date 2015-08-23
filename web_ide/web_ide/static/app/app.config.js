@@ -20,7 +20,7 @@
             })
             .state('repositories', {
                 url: '/choose-repository',
-                templateUrl: '/static/app/github/repositories/choose-repository.html',
+                templateUrl: '/static/app/github/repository/choose-repository.html',
                 controller: 'repositoryController'
             });
     }

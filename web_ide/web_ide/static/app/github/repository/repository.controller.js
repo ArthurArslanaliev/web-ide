@@ -9,13 +9,17 @@
     repositoryController.$inject = ['$scope', 'getRepositoriesService'];
 
     function repositoryController($scope, getRepositoriesService) {
+
         $scope.repositories = [];
 
         activate();
 
         function activate() {
+
             getRepositoriesService.getUserRepositories()
                 .then(function (repositories) {
+                    console.log(repositories);
+
                     $scope.repositories = repositories.data;
                 });
         }
