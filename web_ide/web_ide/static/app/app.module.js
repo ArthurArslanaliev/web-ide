@@ -5,7 +5,6 @@
 
     angular.module('webIde', [
         'ui.router',
-        'ngMock',
 
         'webIde.home',
         'webIde.github',

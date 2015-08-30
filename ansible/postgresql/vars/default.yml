@@ -1,3 +1,5 @@
 dbname: web_ide
 dbuser: web_ide_db_user
 dbpassword: password1^$
+config_file: pg_hba.conf
+config_path: /etc/postgresql/9.3/main

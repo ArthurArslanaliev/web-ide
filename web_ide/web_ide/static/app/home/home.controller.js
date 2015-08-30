@@ -11,6 +11,7 @@
 
     function homeController($rootScope, $scope, $window, GithubAuthService) {
 
+
         $scope.isUserLoggedIn = false;
         $scope.user = null;
 
@@ -30,7 +31,7 @@
         function logout() {
 
             GithubAuthService.logout()
-                .then(function() {
+                .then(function () {
                     $window.location.href = '/';
                 });
         }

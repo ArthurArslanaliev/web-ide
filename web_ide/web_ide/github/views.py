@@ -27,6 +27,7 @@ class CallbackView(APIView):
 
             access_token = access_token_request.make()
             user = GithubUserRequest(API_URL, access_token).make()
+            user.save()
 
             request.session['access_token'] = access_token
             request.session['user'] = user

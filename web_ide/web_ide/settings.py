@@ -123,4 +123,11 @@ STATIC_URL = '/static/'
 APP_URL = 'http://localhost:8080/api'
 
 
+import sys
+
+# use sqlite in unit tests
+if 'test' in sys.argv or 'test_coverage' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+
+
 

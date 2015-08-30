@@ -12,11 +12,6 @@ describe('test app.run.service', function () {
 
     beforeEach(function () {
 
-        var webIdeConfigMock = {
-            USER_LOGIN: expectedUserLogin,
-            USER_ID: expectedUserId
-        };
-
         $stateMock = {
             state: expectedState,
             go: function () {
@@ -25,14 +20,15 @@ describe('test app.run.service', function () {
 
         spyOn($stateMock, 'go');
 
-        var $stateParamsMock = {
-            state: expectedState
-        };
-
         module(function ($provide) {
-            $provide.value('webIdeConfig', webIdeConfigMock);
+            $provide.value('webIdeConfig', {
+                USER_LOGIN: expectedUserLogin,
+                USER_ID: expectedUserId
+            });
             $provide.value('$state', $stateMock);
-            $provide.value('$stateParams', $stateParamsMock);
+            $provide.value('$stateParams', {
+                state: expectedState
+            });
         });
     });
 

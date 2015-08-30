@@ -10,6 +10,9 @@
 - name: install git
   apt: name=git state=present
 
+- name: install libpq-dev
+  apt: name=libpq-dev state=present
+
 - name: install virtualenv
   pip: name=virtualenv
 
@@ -17,7 +20,7 @@
   command: virtualenv {{ virtualenv_path }}
 
 - name: install app requirements
-  pip: requirements={{ requirements_file_path }} virtualenv={{ virtualenv_path }}
+  pip: requirements={{ requirements_file_path }} virtualenv={{ virtualenv_path }} extra_args='--upgrade setuptools'
 
 - name: create log folder
   file: path={{ log_folder }} state=directory

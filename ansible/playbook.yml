@@ -23,3 +23,4 @@
     - include: uwsgi/handlers/uwsgi.yml
     - include: nginx/handlers/nginx.yml
     - include: memcached/handlers/memcached.yml
+    - include: postgresql/handlers/postgresql.yml

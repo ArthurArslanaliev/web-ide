@@ -2,8 +2,9 @@ import mock
 
 from unittest import TestCase
 from mock.mock import Mock
+from web_ide.models import GithubUser
 from tests.github.mocks.mocks import MockResponse
-from web_ide.github.models import GithubUserRequest, GithubUser
+from web_ide.github.models import GithubUserRequest
 
 
 class GithubUserRequestTest(TestCase):

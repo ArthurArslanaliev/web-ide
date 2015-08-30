@@ -1,5 +1,6 @@
 import urllib
 import requests
+from web_ide.models import GithubUser
 
 from web_ide.github.utils import GithubRequests
 
@@ -31,10 +32,13 @@ class AccessTokenRequest:
         return access_token
 
 
-class GithubUser:
-    def __init__(self, login, id):
-        self.login = login
-        self.id = id
+class GithubUserBuilder:
+    def __init__(self, user_data):
+        self._user_data = user_data
+
+    def build(self):
+        return GithubUser(id=self._user_data['id'],
+                          login=self._user_data['login'])
 
 
 class GithubRepository:
@@ -64,8 +68,7 @@ class GithubUserRequest:
     def make(self):
         resp = GithubRequests(self.__api_url, self.__token).get('user')
         user_data = resp.json()
-
-        return GithubUser(user_data['login'], user_data['id'])
+        return GithubUserBuilder(user_data).build()
 
 
 class GithubUserRepositoriesRequest:
