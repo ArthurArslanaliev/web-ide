@@ -19,7 +19,9 @@
 
             $rootScope.$user = {
                 userLogin: webIdeConfig.USER_LOGIN,
-                userId: webIdeConfig.USER_ID
+                userId: webIdeConfig.USER_ID,
+                userAvatarUrl: webIdeConfig.USER_AVATAR_URL,
+                userAccountUrl: webIdeConfig.USER_ACCOUNT_URL
             };
 
             $state.go('home');

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_PATH = '/vagrant/web_ide/web_ide/templates'
@@ -83,7 +84,7 @@ DATABASES = {
         'NAME': 'web_ide',
         'USER': 'web_ide_db_user',
         'PASSWORD': 'password1^$',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
@@ -123,11 +124,12 @@ STATIC_URL = '/static/'
 APP_URL = 'http://localhost:8080/api'
 
 
-import sys
-
 # use sqlite in unit tests
 if 'test' in sys.argv or 'test_coverage' in sys.argv:
-    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-
-
-
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(os.path.dirname(__file__), 'test.db'),
+            'TEST_NAME': os.path.join(os.path.dirname(__file__), 'test.db'),
+        }
+    }

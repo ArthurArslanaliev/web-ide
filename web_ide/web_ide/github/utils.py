@@ -1,19 +1,17 @@
-import urlparse
-
-import requests
+import urllib
 
 
-class GithubRequests:
-    def __init__(self, api_url, token):
-        self.__api_url = api_url
-        self.__token = token
+class AuthRequest:
+    def __init__(self, url, client_id, scopes):
+        self.__github_url = url
+        self.__client_id = client_id
+        self.__scopes = scopes
 
-    def get(self, resource):
+    def get_absolute_url(self):
+        query = {'client_id': self.__client_id, 'scope': ','.join(self.__scopes)}
+        url = '{}?{}'.format(self.__github_url, urllib.urlencode(query))
+        return url
 
-        headers = {
-            'Authorization': 'token {}'.format(self.__token),
-            'Accept': 'application/vnd.github.v3+json'
-        }
 
-        resp = requests.get(urlparse.urljoin(self.__api_url, resource), headers=headers)
-        return resp
+def take_keys(data, keys):
+    return {key: data.get(key) for key in keys}

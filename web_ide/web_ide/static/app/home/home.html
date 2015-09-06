@@ -1,8 +1,11 @@
-<div>
-    <button class="btn btn-primary" ng-click="login()" ng-if="!isUserLoggedIn">Login via GitHub</button>
-    <div ng-if="isUserLoggedIn">Welcome {{ user.userLogin }}!</div>
-</div>
-<div>
-    <button class="btn btn-info" ng-if="isUserLoggedIn" ui-sref="repositories">Get Repositories</button>
-    <button class="btn btn-primary" ng-if="isUserLoggedIn" ng-click="logout()">Logout</button>
+<div class="container">
+    <div class="centralized-form text-center" ng-if="!isUserLoggedIn">
+        <h2>Sign in</h2>
+        <button class="btn btn-primary" ng-click="login()">Sign in with GitHub</button>
+    </div>
+    <div class="centralized-form text-center" ng-if="isUserLoggedIn">
+        <h2>Welcome back <a ng-href="{{ user.userAccountUrl }}" target="_blank" ng-bind="user.userLogin"></a>!</h2>
+        <button class="btn btn-info" ui-sref="repositories">Choose repository</button>
+        <button class="btn btn-primary" ng-click="logout()">Logout</button>
+    </div>
 </div>

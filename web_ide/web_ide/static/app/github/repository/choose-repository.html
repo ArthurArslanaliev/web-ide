@@ -1,6 +1,16 @@
-<ul>
-    <li ng-repeat="repo in repositories">
-        <span ng-bind="repo.full_name"></span>
-        <span ng-bind="repo.description"></span>
-    </li>
-</ul>
+<div class="container">
+    <div class="centralized-form">
+        <h3>Choose repository</h3>
+
+        <div class="list-group">
+            <a href="#" class="list-group-item" ng-class="{ active: isMeChosen(repo) }" ng-click="choose(repo)"
+               ng-repeat="repo in repositories">
+                <h4 class="list-group-item-heading" ng-bind="repo.full_name"></h4>
+
+                <p class="list-group-item-text" ng-bind="repo.description"></p>
+            </a>
+        </div>
+        <button class="btn btn-success" ng-click="loadWebIde()">Let's start!</button>
+    </div>
+</div>
+

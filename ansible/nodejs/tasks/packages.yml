@@ -1,3 +1,6 @@
+- name: install gulp
+  command: npm install -g gulp
+
 - name: install bower
   command: npm install -g bower
 

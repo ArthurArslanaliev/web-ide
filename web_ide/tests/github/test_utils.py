@@ -1,24 +1,18 @@
-import mock
+import urllib
 
-from unittest import TestCase
-from requests import Response
+from django.test import TestCase
 
-from web_ide.github.utils import GithubRequests
+from web_ide.github.utils import AuthRequest
 
 
-class GithubRequestsTest(TestCase):
+class AuthRequestTest(TestCase):
+    def test_get_absolute_url(self):
+        client_id = 'client_id'
+        github_url = 'https://github.com/login/oauth/authorize'
+        scope = 'user'
+        expected_url = '{}?scope={}&client_id={}'.format(github_url, scope, client_id)
 
-    @mock.patch('web_ide.github.utils.requests')
-    def test_get(self, mock_requests):
-        api_url = 'https://github.com'
-        token = 'token'
-        resource = 'users'
-        mock_requests.get.return_value = Response()
+        request = AuthRequest(github_url, client_id, [scope])
+        actual_url = request.get_absolute_url()
 
-        request = GithubRequests(api_url, token)
-        resp = request.get(resource)
-
-        mock_requests.get.assert_called_once_with('https://github.com/users',
-                                                  headers={'Accept': 'application/vnd.github.v3+json',
-                                                           'Authorization': 'token token'})
-        self.assertIsInstance(resp, Response)
+        self.assertEqual(urllib.unquote(actual_url), expected_url)
