@@ -10,7 +10,7 @@
                 <p class="list-group-item-text" ng-bind="repo.description"></p>
             </a>
         </div>
-        <button class="btn btn-success" ng-click="loadWebIde()">Let's start!</button>
+        <button class="btn btn-success" ng-disabled="!chosen" ng-click="loadEditor()">Let's start!</button>
     </div>
 </div>
 

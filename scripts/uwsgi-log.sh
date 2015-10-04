@@ -1,0 +1,1 @@
+sudo tail -f /var/log/uwsgi/app/web_ide.log

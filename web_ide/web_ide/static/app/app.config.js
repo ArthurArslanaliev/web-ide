@@ -22,7 +22,12 @@
                 url: '/choose-repository',
                 templateUrl: '/static/app/github/repository/choose-repository.html',
                 controller: 'repositoryController'
-            });
+            })
+            .state('editor', {
+                url: '/editor/:repo',
+                templateUrl: '/static/app/editor/editor.html',
+                controller: 'editorController'
+            })
     }
 
 })();

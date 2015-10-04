@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^logout/?$', LogoutView.as_view()),
 
     url(r'^repos/?$', RepositoriesView.as_view()),
-    url(r'^repos/(?P<repository_id>[0-9]+)/?$', RepositoryView.as_view())
+    # the repository_name can consists of any characters
+    url(r'^repos/(?P<repository_name>.+)/?$', RepositoryView.as_view())
 ]

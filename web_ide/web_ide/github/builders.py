@@ -20,6 +20,7 @@ class GithubRepositoryBuilder:
     @staticmethod
     def build(data, github_user):
         return GithubRepository(id=data['id'],
+                                name=data['name'],
                                 full_name=data['full_name'],
                                 clone_url=data['clone_url'],
                                 description=data['description'],

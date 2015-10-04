@@ -13,6 +13,7 @@
         this.getUserRepositories = getUserRepositories;
 
         function getUserRepositories() {
+
             return $http.get(webIdeConfig.APP_URL + '/github/repos/')
         }
     }

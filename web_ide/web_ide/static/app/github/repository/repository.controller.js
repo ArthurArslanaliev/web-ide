@@ -6,16 +6,16 @@
     angular.module('webIde.github.repository')
         .controller('repositoryController', repositoryController);
 
-    repositoryController.$inject = ['$scope', 'getRepositoriesService'];
+    repositoryController.$inject = ['$scope', '$state', 'getRepositoriesService'];
 
-    function repositoryController($scope, getRepositoriesService) {
+    function repositoryController($scope, $state, getRepositoriesService) {
 
         $scope.repositories = [];
         $scope.chosen = null;
 
         $scope.choose = choose;
         $scope.isMeChosen = isMeChosen;
-        $scope.loadWebIde = loadWebIde;
+        $scope.loadEditor = loadEditor;
 
         activate();
 
@@ -39,8 +39,8 @@
             $scope.chosen = repo;
         }
 
-        function loadWebIde() {
-            alert('loading webIde');
+        function loadEditor() {
+            $state.go('editor', {repo: $scope.chosen.name});
         }
     }
 

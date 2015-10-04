@@ -3,11 +3,11 @@ from django.shortcuts import redirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from web_ide.repository.repository import LocalRepositoryService
 from web_ide.models import GithubUser
 from web_ide.github.utils import take_keys, AuthRequest
 from web_ide.github.builders import GithubUserBuilder, GithubRepositoryBuilder
 from web_ide.github.api import GithubAPI
-
 from web_ide.github.keys import SECRET_KEY, CLIENT_ID
 from web_ide.github.settings import AUTH_URL, SCOPES
 
@@ -59,7 +59,7 @@ class RepositoriesView(APIView):
 
         if access_token:
             resp_data = GithubAPI.get_user_public_repositories(access_token)
-            serialize = lambda x: take_keys(x, ['id', 'full_name', 'clone_url', 'description'])
+            serialize = lambda x: take_keys(x, ['id', 'name', 'full_name', 'clone_url', 'description'])
             return Response(data=map(serialize, resp_data))
         else:
             return HttpResponseForbidden()
@@ -74,8 +74,12 @@ class RepositoryView(APIView):
             assert isinstance(user, GithubUser)
 
             resp_data = GithubAPI.get_user_public_repository(user.login, repository_name)
-            repository = GithubRepositoryBuilder.build(resp_data, user)
-            repository.save()
+            github_repository = GithubRepositoryBuilder.build(resp_data, user)
+            github_repository.save()
+
+            session_key = request.session.session_key
+            local_repository = LocalRepositoryService.init_repository(session_key, github_repository)
+            local_repository.save()
 
             return Response(data='saved')
         else:

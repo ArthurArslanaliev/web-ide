@@ -8,7 +8,8 @@
 
         'webIde.home',
         'webIde.github',
-        'webIde.github.repository'
+        'webIde.github.repository',
+        'webIde.editor'
     ]);
 
 })();
