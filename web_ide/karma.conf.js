@@ -19,6 +19,7 @@ module.exports = function (config) {
             'web_ide/static/bower_components/angular/angular.js',
             'web_ide/static/bower_components/angular-mocks/angular-mocks.js',
             'web_ide/static/bower_components/angular-ui-router/release/angular-ui-router.min.js',
+            'web_ide/static/vendor/angular.treeview.js',
 
             'web_ide/static/app/app.module.js',
             'web_ide/static/app/**/*.module.js',

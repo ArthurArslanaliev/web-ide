@@ -5,6 +5,7 @@
 
     angular.module('webIde', [
         'ui.router',
+        'angularTreeview',
 
         'webIde.home',
         'webIde.github',
