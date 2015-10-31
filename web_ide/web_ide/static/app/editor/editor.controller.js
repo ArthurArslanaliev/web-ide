@@ -12,30 +12,11 @@
 
         activate();
 
-        $scope.treedata = [
-            {
-                "label": "User", "id": "role1", "children": [
-                {"label": "subUser1", "id": "role11", "children": []},
-                {
-                    "label": "subUser2", "id": "role12", "children": [
-                    {
-                        "label": "subUser2-1", "id": "role121", "children": [
-                        {"label": "subUser2-1-1", "id": "role1211", "children": []},
-                        {"label": "subUser2-1-2", "id": "role1212", "children": []}
-                    ]
-                    }
-                ]
-                }
-            ]
-            },
-            {"label": "Admin", "id": "role2", "children": []},
-            {"label": "Guest", "id": "role3", "children": []}
-        ];
+        $scope.structure = [];
 
-        $scope.$watch('abc.currentNode', function (newObj, oldObj) {
-            if ($scope.abc && angular.isObject($scope.abc.currentNode)) {
-                console.log('Node Selected!!');
-                console.log($scope.abc.currentNode);
+        $scope.$watch('structure.currentNode', function (newObj, oldObj) {
+            if ($scope.structure && angular.isObject($scope.structure.currentNode)) {
+                console.log($scope.structure.currentNode.id);
             }
         }, false);
 
@@ -43,9 +24,12 @@
 
             editorService.loadEditor($stateParams.repo)
                 .then(function (resp) {
-                    console.log(resp);
-                });
-
+                    return resp.data.id;
+                })
+                .then(editorService.loadRepositoryStructure)
+                .then(function (resp) {
+                    $scope.structure = resp.data;
+                })
         }
     }
 

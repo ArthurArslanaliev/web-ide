@@ -14,3 +14,8 @@ def custom_exception_handler(exc, context):
         response.data['status_code'] = response.status_code
 
     return Response(data={'error': str(exc)}, status=500)
+
+
+def take_access_token_from_session(request):
+    if request.session and 'user' in request.session and 'access_token' in request.session:
+        return request.session['access_token']

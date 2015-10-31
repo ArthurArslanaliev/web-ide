@@ -1,4 +1,5 @@
 import os
+
 from unittest import TestCase
 
 from web_ide.repository.file_browser import FileBrowser
@@ -13,8 +14,12 @@ class FileBrowserTest(TestCase):
 
         expected_structure = [
             {'label': 'directory_1', 'id': 'file_browser_test_folder/directory_1', 'children': [
+                {'label': 'directory_1', 'id': 'file_browser_test_folder/directory_1/directory_1', 'children':[
+                    {'label': 'file_1', 'id': 'file_browser_test_folder/directory_1/directory_1/file_1'}
+                ]},
                 {'label': 'file_1', 'id': 'file_browser_test_folder/directory_1/file_1'}
             ]},
+            {'label': 'directory_2', 'id': 'file_browser_test_folder/directory_2', 'children':[]},
             {'label': 'file_1', 'id': 'file_browser_test_folder/file_1'},
             {'label': 'file_2', 'id': 'file_browser_test_folder/file_2'}
         ]

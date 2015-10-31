@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from web_ide.common.utils import take_access_token_from_session
 from web_ide.repository.repository import LocalRepositoryService
 from web_ide.models import GithubUser
 from web_ide.github.utils import take_keys, AuthRequest
@@ -10,11 +11,6 @@ from web_ide.github.builders import GithubUserBuilder, GithubRepositoryBuilder
 from web_ide.github.api import GithubAPI
 from web_ide.github.keys import SECRET_KEY, CLIENT_ID
 from web_ide.github.settings import AUTH_URL, SCOPES
-
-
-def take_access_token_from_session(request):
-    if request.session and 'user' in request.session and 'access_token' in request.session:
-        return request.session['access_token']
 
 
 class AuthView(APIView):
@@ -80,10 +76,12 @@ class RepositoryView(APIView):
             # try to fetch repository by session_key and check if exists on file_system
             # before initializing the new one
 
+            # also think of uniqueness of user_session
+
             session_key = request.session.session_key
             local_repository = LocalRepositoryService.init_repository(session_key, github_repository)
             local_repository.save()
 
-            return Response(data=local_repository.id)
+            return Response(data={'id': local_repository.id})
         else:
             return HttpResponseForbidden()

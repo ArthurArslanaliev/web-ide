@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from web_ide.github.views import AuthView, CallbackView, LogoutView, RepositoriesView, RepositoryView
+from web_ide.repository.views import StructureView
 
 urlpatterns = [
-    url(r'^structure/?$', AuthView.as_view())
+    url(r'^structure/(?P<local_repository_id>[0-9]+)/?$', StructureView.as_view())
 ]
