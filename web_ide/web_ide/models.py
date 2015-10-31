@@ -18,7 +18,7 @@ class GithubRepository(models.Model):
 
 
 class LocalRepository(models.Model):
-    user_session_key = models.CharField(max_length=255, unique=True)
+    user_session_key = models.CharField(max_length=255)
     path = models.CharField(max_length=255, unique=True)
     last_modified = models.DateTimeField(null=False)
     github_repository = models.ForeignKey(GithubRepository)

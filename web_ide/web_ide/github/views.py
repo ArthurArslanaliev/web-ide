@@ -77,10 +77,13 @@ class RepositoryView(APIView):
             github_repository = GithubRepositoryBuilder.build(resp_data, user)
             github_repository.save()
 
+            # try to fetch repository by session_key and check if exists on file_system
+            # before initializing the new one
+
             session_key = request.session.session_key
             local_repository = LocalRepositoryService.init_repository(session_key, github_repository)
             local_repository.save()
 
-            return Response(data='saved')
+            return Response(data=local_repository.id)
         else:
             return HttpResponseForbidden()

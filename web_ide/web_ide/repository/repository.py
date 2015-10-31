@@ -1,7 +1,7 @@
 import tempfile
 
 from git import Repo
-from datetime import datetime
+from django.utils import timezone
 
 from web_ide.models import GithubRepository, LocalRepository
 
@@ -15,11 +15,9 @@ class LocalRepositoryService(object):
 
         Repo.clone_from(github_repository.clone_url, temp_dir)
 
-        print('temp folder: {}'.format(temp_dir))
-
         return LocalRepository(path=temp_dir,
                                user_session_key=user_session_key,
-                               last_modified=datetime.now(),
+                               last_modified=timezone.now(),
                                github_repository=github_repository)
 
 
