@@ -1,10 +1,12 @@
 # Think of how to display empty folder since it will have no children inside and
 # could be treated as file.
 import os
+import base64
 
 
 class FileBrowser(object):
     GIT_FOLDER = '.git'
+    TMP_FOLDER = '/tmp'
 
     def __init__(self, base_dir):
         self.base_dir = base_dir
@@ -37,6 +39,13 @@ class FileBrowser(object):
                 append_to.append({'label': f, 'id': f_cut_path})
 
         return structure
+
+    @classmethod
+    def get_content_base_64(cls, temp_path):
+        real_path = os.path.join(cls.TMP_FOLDER, temp_path)
+        with open(real_path, 'rb') as fb:
+            content = fb.read()
+            return base64.b64encode(content)
 
     @staticmethod
     def find_parent_directory_by_id(parent, id):

@@ -1,8 +1,17 @@
-<div
-    data-angular-treeview="true"
-    data-tree-id="browser"
-    data-tree-model="structure"
-    data-node-id="id"
-    data-node-label="label"
-    data-node-children="children" >
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div data-angular-treeview="true"
+                 data-tree-id="browser"
+                 data-tree-model="structure"
+                 data-node-id="id"
+                 data-node-label="label"
+                 data-node-children="children">
+            </div>
+        </div>
+        <div class="col-md-8" ng-if="showCodeEditor" ng-bind="content"></div>
+        <img ng-if="!showCodeEditor" ng-src="{{ image }}">
+    </div>
 </div>
+
+
