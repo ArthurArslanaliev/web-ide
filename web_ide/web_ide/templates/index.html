@@ -11,7 +11,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="static/bower_components/normalize.css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="static/vendor/angular.treeview.css">
+    <link rel="stylesheet" type="text/css" href="static/vendor/angular-treeview/angular.treeview.css">
+    <link rel="stylesheet" type="text/css" href="static/vendor/ng-terminal/vtortola.ng-terminal.css">
     <link rel="stylesheet" type="text/css" href="static/css/app.css">
     <script src="static/bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -24,12 +25,17 @@
 <div ui-view></div>
 
 <script type="application/javascript" src="static/bower_components/jquery/dist/jquery.min.js"></script>
+<script type="application/javascript" src="static/bower_components/ace-builds/src-min-noconflict/ace.js"></script>
 <script type="application/javascript" src="static/bower_components/angular/angular.js"></script>
+<script type="application/javascript" src="static/bower_components/angular-ui-ace/ui-ace.js"></script>
 <script type="application/javascript" src="static/bower_components/angular-mocks/angular-mocks.js"></script>
-<script type="application/javascript" src="static/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-<script type="application/javascript" src="static/vendor/angular.treeview.js"></script>
+<script type="application/javascript"
+        src="static/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="application/javascript"
+        src="static/bower_components/angular-bootstrap-contextmenu/contextMenu.js"></script>
 
-
+<script type="application/javascript" src="static/vendor/angular-treeview/angular.treeview.js"></script>
+<script type="application/javascript" src="static/vendor/ng-terminal/vtortola.ng-terminal.js"></script>
 
 <script type="application/javascript" src="static/app/app.module.js"></script>
 <script type="application/javascript" src="static/app/app.config.js"></script>
@@ -50,6 +56,8 @@
 <script type="application/javascript" src="static/app/editor/editor.controller.js"></script>
 <script type="application/javascript" src="static/app/editor/editor.service.js"></script>
 <script type="application/javascript" src="static/app/editor/editor.file.service.js"></script>
+<script type="application/javascript" src="static/app/editor/editor.ace.service.js"></script>
+<script type="application/javascript" src="static/app/editor/editor.contextMenu.service.js"></script>
 
 {% include "web_ide_client_config.html" %}
 

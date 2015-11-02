@@ -6,14 +6,26 @@
     angular.module('webIde.editor')
         .controller('editorController', editorController);
 
-    editorController.$inject = ['$scope', '$stateParams', 'editorService', 'fileService'];
+    editorController.$inject = ['$scope', '$stateParams', 'editorService', 'fileService', 'aceService'];
 
-    function editorController($scope, $stateParams, editorService, fileService) {
+    function editorController($scope, $stateParams, editorService, fileService, aceService) {
+        var aceEditor;
 
         $scope.structure = [];
         $scope.content = null;
         $scope.showCodeEditor = true;
         $scope.image = null;
+        $scope.menuOptions = [
+            ['Select', function ($itemScope) {
+                console.log($itemScope);
+            }],
+            ['Delete', function ($itemScope) {
+                console.log($itemScope);
+            }]
+        ];
+        $scope.aceOptions = {
+            onLoad: aceOnLoad
+        };
 
         activate();
 
@@ -27,6 +39,13 @@
                                 $scope.image = 'data:image/png;base64, ' + resp.data;
                                 $scope.showCodeEditor = false;
                             } else {
+                                var fileExtension = fileService.getFileExtension(selectedNode.id);
+                                var aceMode = aceService.getAceMode(fileExtension);
+
+                                console.log(aceMode);
+
+                                aceService.setAceMode(aceEditor, aceMode);
+
                                 $scope.showCodeEditor = true;
                                 $scope.content = atob(resp.data);
                             }
@@ -34,6 +53,15 @@
                 }
             }
         }, false);
+
+        $scope.$broadcast('terminal-output', {
+            output: true,
+            text: ['Welcome to vtortola.GitHub.io',
+                'This is an example of ng-terminal-emulator.',
+                '',
+                "Please type 'help' to open a list of commands"],
+            breakLine: true
+        });
 
         function activate() {
 
@@ -45,6 +73,10 @@
                 .then(function (resp) {
                     $scope.structure = resp.data;
                 })
+        }
+
+        function aceOnLoad(_ace) {
+            aceEditor = _ace;
         }
     }
 

@@ -19,7 +19,12 @@ module.exports = function (config) {
             'web_ide/static/bower_components/angular/angular.js',
             'web_ide/static/bower_components/angular-mocks/angular-mocks.js',
             'web_ide/static/bower_components/angular-ui-router/release/angular-ui-router.min.js',
-            'web_ide/static/vendor/angular.treeview.js',
+            'web_ide/static/bower_components/ace-builds/src-min-noconflict/ace.js',
+            'web_ide/static/bower_components/angular-ui-ace/ui-ace.js',
+            'web_ide/static/bower_components/angular-bootstrap-contextmenu/contextMenu.js',
+
+            'web_ide/static/vendor/angular-treeview/angular.treeview.js',
+            'web_ide/static/vendor/ng-terminal/vtortola.ng-terminal.js',
 
             'web_ide/static/app/app.module.js',
             'web_ide/static/app/**/*.module.js',

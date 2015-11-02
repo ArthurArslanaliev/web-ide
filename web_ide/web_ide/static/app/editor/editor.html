@@ -9,8 +9,19 @@
                  data-node-children="children">
             </div>
         </div>
-        <div class="col-md-8" ng-if="showCodeEditor" ng-bind="content"></div>
+        <div class="col-md-8" ng-if="showCodeEditor">
+            <div class="ace-editor" ui-ace="aceOptions" ng-model="content"></div>
+        </div>
         <img ng-if="!showCodeEditor" ng-src="{{ image }}">
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            GitRepoViewer
+        </div>
+        <div class="col-md-8">
+            <terminal class="terminal">
+            </terminal>
+        </div>
     </div>
 </div>
 

@@ -11,15 +11,19 @@
         var imgExtensions = ['jpg', 'png', 'gif'];
 
         this.isImage = isImage;
+        this.getFileExtension = getFileExtension;
 
         function isImage(path) {
+            var ext = getFileExtension(path);
+            return ext && imgExtensions.indexOf(ext) > -1;
+        }
+
+        function getFileExtension(path) {
             var s = path.split('.');
-            var ext = null;
             if (s.length) {
-                ext = s.pop();
-                return imgExtensions.indexOf(ext) > -1;
+                return s.pop();
             }
-            return false;
+            return null;
         }
     }
 
