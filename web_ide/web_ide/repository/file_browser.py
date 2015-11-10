@@ -7,6 +7,8 @@ import base64
 class FileBrowser(object):
     GIT_FOLDER = '.git'
     TMP_FOLDER = '/tmp'
+    TYPE_FOLDER = 'folder'
+    TYPE_FILE = 'file'
 
     def __init__(self, base_dir):
         self.base_dir = base_dir
@@ -39,6 +41,18 @@ class FileBrowser(object):
                 append_to.append({'label': f, 'id': f_cut_path})
 
         return structure
+
+    def create_new_entity(self, path, entity_type):
+        if entity_type == self.TYPE_FOLDER:
+            self._create_new_folder(path)
+        elif entity_type == self.TYPE_FILE:
+            self._create_new_file(path)
+
+    def _create_new_folder(self, folder_path):
+        os.makedirs(os.path.join(self.TMP_FOLDER, folder_path))
+
+    def _create_new_file(self, file_path):
+        pass
 
     @classmethod
     def get_content_base_64(cls, temp_path):

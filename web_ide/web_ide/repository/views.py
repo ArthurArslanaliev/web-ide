@@ -33,3 +33,21 @@ class ContentView(APIView):
             return Response(data=base64_content)
         else:
             return HttpResponseForbidden()
+
+
+class CreateEntityView(APIView):
+    def post(self, request, local_repository_id):
+        access_token = take_access_token_from_session(request)
+        if access_token:
+            data = request.data
+            local_repository = LocalRepository.objects.get(id=local_repository_id)
+
+            assert isinstance(local_repository, LocalRepository)
+
+            file_browser = FileBrowser(local_repository.path)
+            file_browser.create_new_entity(data['path'], data['type'])
+            structure = file_browser.get_structure()
+
+            return Response(data=structure)
+        else:
+            return HttpResponseForbidden()

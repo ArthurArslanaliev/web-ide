@@ -9,6 +9,7 @@
         'angularTreeview',
         'ui.bootstrap.contextMenu',
         'vtortola.ng-terminal',
+        'ui.bootstrap',
 
         'webIde.home',
         'webIde.github',
