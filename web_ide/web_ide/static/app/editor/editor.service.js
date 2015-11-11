@@ -14,6 +14,7 @@
         this.loadRepositoryStructure = loadRepositoryStructure;
         this.getContent = getContent;
         this.createFolder = createFolder;
+        this.createNewFile = createNewFile;
 
         function loadEditor(repositoryName) {
             return $http.post(webIdeConfig.APP_URL + '/github/repos/' + repositoryName);
@@ -29,6 +30,11 @@
 
         function createFolder(path, repositoryId) {
             var data = {'path': path, 'type': 'folder'};
+            return $http.post(webIdeConfig.APP_URL + '/repository/structure/' + repositoryId + '/create/', data);
+        }
+
+        function createNewFile(path, repositoryId) {
+            var data = {'path': path, 'type': 'file'};
             return $http.post(webIdeConfig.APP_URL + '/repository/structure/' + repositoryId + '/create/', data);
         }
     }

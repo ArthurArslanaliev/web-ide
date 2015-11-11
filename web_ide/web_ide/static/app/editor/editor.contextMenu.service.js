@@ -12,10 +12,12 @@
             CREATE_NEW_FILE = 'Create New Fille',
             RENAME = 'Rename',
             DELETE = 'Delete',
-            onCreateNewFolder = null;
+            onCreateNewFolder = null,
+            onCreateNewFile = null;
 
         var createNewFolder = [
             CREATE_NEW_FOLDER,
+
             function ($itemScope) {
                 var modal = openNewEntityModal(CREATE_NEW_FOLDER);
                 modal.result.then(function (newEntityName) {
@@ -25,18 +27,24 @@
         ];
         var createNewFile = [
             CREATE_NEW_FILE,
+
             function ($itemScope) {
                 var modal = openNewEntityModal(CREATE_NEW_FILE);
+                modal.result.then(function (newEntityName) {
+                    onCreateNewFile($itemScope, newEntityName);
+                });
             }
         ];
         var rename = [
             RENAME,
+
             function ($itemScope) {
                 var modal = openNewEntityModal(RENAME);
             }
         ];
         var deleteOpt = [
             DELETE,
+
             function ($itemScope) {
                 // Show confirmation modal
             }
@@ -45,6 +53,7 @@
 
         this.getContextMenu = getContextMenu;
         this.setCreateNewFolderCallback = setCreateNewFolderCallBack;
+        this.setCreateNewFileCallback = setCreateNewFileCallback;
 
         function getContextMenu(item) {
             var menuOpt = [];
@@ -73,6 +82,10 @@
 
         function setCreateNewFolderCallBack(callback) {
             onCreateNewFolder = callback;
+        }
+
+        function setCreateNewFileCallback(callback) {
+            onCreateNewFile = callback;
         }
     }
 

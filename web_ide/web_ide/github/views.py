@@ -3,9 +3,10 @@ from django.shortcuts import redirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from web_ide.repository.file_browser import FileBrowser
 from web_ide.common.utils import take_access_token_from_session
 from web_ide.repository.repository import LocalRepositoryService
-from web_ide.models import GithubUser
+from web_ide.models import GithubUser, LocalRepository
 from web_ide.github.utils import take_keys, AuthRequest
 from web_ide.github.builders import GithubUserBuilder, GithubRepositoryBuilder
 from web_ide.github.api import GithubAPI
@@ -79,6 +80,15 @@ class RepositoryView(APIView):
             # also think of uniqueness of user_session
 
             session_key = request.session.session_key
+            query_set = LocalRepository.objects.filter(user_session_key=session_key,
+                                                       github_repository_id=github_repository.id) \
+                .order_by('-last_modified')
+
+            if query_set.exists():
+                local_repo = query_set.first()
+                if FileBrowser.repo_exists(local_repo.path):
+                    return Response(data={'id': local_repo.id})
+
             local_repository = LocalRepositoryService.init_repository(session_key, github_repository)
             local_repository.save()
 

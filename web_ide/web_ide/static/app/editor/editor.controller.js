@@ -99,6 +99,7 @@
 
         function setContextMenuCallbacks() {
             contextMenuService.setCreateNewFolderCallback(onCreateNewFolder);
+            contextMenuService.setCreateNewFileCallback(onCreateNewFile);
         }
 
         function onCreateNewFolder($itemScope, folderName) {
@@ -107,7 +108,16 @@
 
             editorService.createFolder(targetPath, repositoryId)
                 .then(function (resp) {
-                    console.log(resp.data);
+                    $scope.structure = resp.data;
+                });
+        }
+
+        function onCreateNewFile($itemScope, folderName) {
+            var parentPath = $itemScope.node.id;
+            var targetPath = parentPath + '/' + folderName;
+
+            editorService.createNewFile(targetPath, repositoryId)
+                .then(function (resp) {
                     $scope.structure = resp.data;
                 });
         }

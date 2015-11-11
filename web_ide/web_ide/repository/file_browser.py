@@ -1,5 +1,3 @@
-# Think of how to display empty folder since it will have no children inside and
-# could be treated as file.
 import os
 import base64
 
@@ -52,7 +50,7 @@ class FileBrowser(object):
         os.makedirs(os.path.join(self.TMP_FOLDER, folder_path))
 
     def _create_new_file(self, file_path):
-        pass
+        open(os.path.join(self.TMP_FOLDER, file_path), 'w').close()
 
     @classmethod
     def get_content_base_64(cls, temp_path):
@@ -76,3 +74,7 @@ class FileBrowser(object):
         spl = path.split('/')
         base_dir_index = spl.index(base_dir)
         return '/'.join(spl[base_dir_index:])
+
+    @staticmethod
+    def repo_exists(repo_path):
+        return os.path.isdir(repo_path)
