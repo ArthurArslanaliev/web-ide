@@ -31,6 +31,7 @@
         $scope.image = null;
 
         $scope.showContextMenu = showContextMenu;
+        $scope.saveContent = saveContent;
 
         $scope.aceOptions = {
             onLoad: aceOnLoad
@@ -53,7 +54,7 @@
                                 aceService.setAceMode(aceEditor, aceMode);
 
                                 $scope.showCodeEditor = true;
-                                $scope.content = atob(resp.data);
+                                aceService.setContent(aceEditor, atob(resp.data));
                             }
                         });
                 }
@@ -119,6 +120,16 @@
             editorService.createNewFile(targetPath, repositoryId)
                 .then(function (resp) {
                     $scope.structure = resp.data;
+                });
+        }
+
+        function saveContent() {
+            var currentNode = $scope.browser.currentNode;
+            var content = aceService.getContent(aceEditor);
+            var base64 = btoa(content);
+            editorService.saveContent(currentNode.id, base64)
+                .then(function (resp) {
+                    console.log(resp.data);
                 });
         }
     }

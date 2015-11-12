@@ -15,6 +15,9 @@
         this.getAceMode = getAceMode;
         this.setAceMode = setAceMode;
 
+        this.setContent = setContent;
+        this.getContent = getContent;
+
         function getAceMode(fileExtension) {
             if (fileExtension in modesMap) {
                 return modesMap[fileExtension];
@@ -24,6 +27,15 @@
 
         function setAceMode(aceInstance, aceMode) {
             aceInstance.getSession().setMode(aceMode);
+        }
+
+        function setContent(aceInstance, content) {
+            // set value and move cursor to the start
+            aceInstance.setValue(content, -1);
+        }
+
+        function getContent(aceInstance) {
+            return aceInstance.getValue();
         }
     }
 

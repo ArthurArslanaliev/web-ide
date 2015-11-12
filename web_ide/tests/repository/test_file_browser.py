@@ -33,6 +33,6 @@ class FileBrowserTest(TestCase):
         path = '/opt/vagrant/base_dir/project/file.txt'
         expected_path = 'base_dir/project/file.txt'
 
-        actual_path = FileBrowser.cut_path_to_base_dir(base_dir, path)
+        actual_path = FileBrowser._cut_path_to_base_dir(base_dir, path)
 
         self.assertEqual(actual_path, expected_path)

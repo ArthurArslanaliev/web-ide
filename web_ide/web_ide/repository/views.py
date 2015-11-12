@@ -27,10 +27,22 @@ class ContentView(APIView):
     def get(self, request):
         access_token = take_access_token_from_session(request)
         if access_token:
+            # TODO: Add LocalRepository look-up here ???
             query = request.query_params
             path = query['path']
             base64_content = FileBrowser.get_content_base_64(path)
             return Response(data=base64_content)
+        else:
+            return HttpResponseForbidden()
+
+    def put(self, request):
+        access_token = take_access_token_from_session(request)
+        if access_token:
+            data = request.data
+            path = data['path']
+            content = data['content']
+            FileBrowser.set_content(path, content)
+            return Response()
         else:
             return HttpResponseForbidden()
 
