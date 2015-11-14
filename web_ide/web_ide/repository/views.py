@@ -2,6 +2,7 @@ from django.http.response import HttpResponseForbidden
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from web_ide.repository.repository import LocalRepositoryService
 from web_ide.repository.file_browser import FileBrowser
 from web_ide.models import LocalRepository
 from web_ide.common.utils import take_access_token_from_session
@@ -76,5 +77,17 @@ class RenameEntityView(APIView):
             structure = file_browser.get_structure()
 
             return Response(data=structure)
+        else:
+            return HttpResponseForbidden()
+
+
+class ExecuteCommandView(APIView):
+    def post(self, request, local_repository_id):
+        access_token = take_access_token_from_session(request)
+        if access_token:
+            command = request.data['command']
+            local_repository = LocalRepository.objects.get(id=local_repository_id)
+            result = LocalRepositoryService.execute_command(local_repository.path, command)
+            return Response(data=result)
         else:
             return HttpResponseForbidden()

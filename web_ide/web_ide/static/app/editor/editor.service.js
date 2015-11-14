@@ -17,6 +17,7 @@
         this.createNewFile = createNewFile;
         this.saveContent = saveContent;
         this.renameEntity = renameEntity;
+        this.executeCommand = executeCommand;
 
         function loadEditor(repositoryName) {
             return $http.post(webIdeConfig.APP_URL + '/github/repos/' + repositoryName);
@@ -48,6 +49,10 @@
         function saveContent(path, content) {
             var data = {path: path, content: content};
             return $http.put(webIdeConfig.APP_URL + '/repository/content/', data);
+        }
+
+        function executeCommand(repositoryId, command) {
+            return $http.post(webIdeConfig.APP_URL + '/repository/structure/' + repositoryId + '/execute/', command);
         }
     }
 

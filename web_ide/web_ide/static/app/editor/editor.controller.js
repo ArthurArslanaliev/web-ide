@@ -65,8 +65,12 @@
 
         $scope.$on('terminal-input', function (e, consoleInput) {
             var cmd = consoleInput[0];
-            console.log(cmd);
-            // do stuff
+            if (cmd) {
+                editorService.executeCommand(repositoryId, cmd)
+                    .then(function (resp) {
+                        sendToTerminal([resp.data]);
+                    });
+            }
         });
 
         function activate() {
