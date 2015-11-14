@@ -13,7 +13,8 @@
             RENAME = 'Rename',
             DELETE = 'Delete',
             onCreateNewFolder = null,
-            onCreateNewFile = null;
+            onCreateNewFile = null,
+            onRename = null;
 
         var createNewFolder = [
             CREATE_NEW_FOLDER,
@@ -39,7 +40,13 @@
             RENAME,
 
             function ($itemScope) {
-                var modal = openNewEntityModal(RENAME);
+                var title = $itemScope.node.children ? 'New name for folder' :
+                    'New name for file';
+
+                var modal = openNewEntityModal(title);
+                modal.result.then(function (newEntityName) {
+                    onRename($itemScope, newEntityName);
+                });
             }
         ];
         var deleteOpt = [
@@ -54,6 +61,7 @@
         this.getContextMenu = getContextMenu;
         this.setCreateNewFolderCallback = setCreateNewFolderCallBack;
         this.setCreateNewFileCallback = setCreateNewFileCallback;
+        this.setRenameCallback = setRenameCallback;
 
         function getContextMenu(item) {
             var menuOpt = [];
@@ -86,6 +94,10 @@
 
         function setCreateNewFileCallback(callback) {
             onCreateNewFile = callback;
+        }
+
+        function setRenameCallback(callback) {
+            onRename = callback;
         }
     }
 

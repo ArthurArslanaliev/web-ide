@@ -63,3 +63,18 @@ class CreateEntityView(APIView):
             return Response(data=structure)
         else:
             return HttpResponseForbidden()
+
+
+class RenameEntityView(APIView):
+    def put(self, request, local_repository_id):
+        access_token = take_access_token_from_session(request)
+        if access_token:
+            data = request.data
+            local_repository = LocalRepository.objects.get(id=local_repository_id)
+            file_browser = FileBrowser(local_repository.path)
+            file_browser.rename(data['source'], data['destination'])
+            structure = file_browser.get_structure()
+
+            return Response(data=structure)
+        else:
+            return HttpResponseForbidden()

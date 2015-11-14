@@ -46,6 +46,11 @@ class FileBrowser(object):
         elif entity_type == self.TYPE_FILE:
             self._create_new_file(path)
 
+    def rename(self, source, destination):
+        s = os.path.join(self.TMP_FOLDER, source)
+        d = os.path.join(self.TMP_FOLDER, destination)
+        os.rename(s, d)
+
     @classmethod
     def get_content_base_64(cls, temp_path):
         real_path = os.path.join(cls.TMP_FOLDER, temp_path)

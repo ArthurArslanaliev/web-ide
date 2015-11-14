@@ -6,7 +6,7 @@
         var me = {};
         me.typeSoundUrl =null;
         me.startSoundUrl = null;
-        me.promptConfiguration = { end: ':>', user: 'anon', separator: '@', path: '\\' };
+        me.promptConfiguration = { end: ':>', user: 'webIde', separator: '@', path: '\\' };
                
         me.getTypeEffect = null;
         me.getStartEffect = null;

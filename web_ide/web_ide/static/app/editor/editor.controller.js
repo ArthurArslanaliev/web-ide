@@ -9,6 +9,7 @@
     editorController.$inject = [
         '$scope',
         '$stateParams',
+        '$timeout',
         'editorService',
         'fileService',
         'aceService',
@@ -17,6 +18,7 @@
 
     function editorController($scope,
                               $stateParams,
+                              $timeout,
                               editorService,
                               fileService,
                               aceService,
@@ -61,13 +63,10 @@
             }
         }, false);
 
-        $scope.$broadcast('terminal-output', {
-            output: true,
-            text: ['Welcome to vtortola.GitHub.io',
-                'This is an example of ng-terminal-emulator.',
-                '',
-                "Please type 'help' to open a list of commands"],
-            breakLine: true
+        $scope.$on('terminal-input', function (e, consoleInput) {
+            var cmd = consoleInput[0];
+            console.log(cmd);
+            // do stuff
         });
 
         function activate() {
@@ -83,6 +82,7 @@
                 });
 
             setContextMenuCallbacks();
+            sendToTerminal(['Welcome to <webIde>!', 'You can type your git commands here!']);
         }
 
         function aceOnLoad(_ace) {
@@ -101,6 +101,7 @@
         function setContextMenuCallbacks() {
             contextMenuService.setCreateNewFolderCallback(onCreateNewFolder);
             contextMenuService.setCreateNewFileCallback(onCreateNewFile);
+            contextMenuService.setRenameCallback(onRename);
         }
 
         function onCreateNewFolder($itemScope, folderName) {
@@ -123,6 +124,16 @@
                 });
         }
 
+        function onRename($itemScope, newName) {
+            var source = $itemScope.node.id;
+            var destination = source.substr(0, source.lastIndexOf('/') + 1) + newName;
+
+            editorService.renameEntity(repositoryId, source, destination)
+                .then(function (resp) {
+                    $scope.structure = resp.data;
+                });
+        }
+
         function saveContent() {
             var currentNode = $scope.browser.currentNode;
             var content = aceService.getContent(aceEditor);
@@ -131,6 +142,16 @@
                 .then(function (resp) {
                     console.log(resp.data);
                 });
+        }
+
+        function sendToTerminal(text) {
+            $timeout(function () {
+                $scope.$broadcast('terminal-output', {
+                    output: true,
+                    text: text,
+                    breakLine: true
+                });
+            });
         }
     }
 

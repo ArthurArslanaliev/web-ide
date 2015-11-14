@@ -16,6 +16,7 @@
         this.createFolder = createFolder;
         this.createNewFile = createNewFile;
         this.saveContent = saveContent;
+        this.renameEntity = renameEntity;
 
         function loadEditor(repositoryName) {
             return $http.post(webIdeConfig.APP_URL + '/github/repos/' + repositoryName);
@@ -32,6 +33,11 @@
         function createFolder(path, repositoryId) {
             var data = {path: path, type: 'folder'};
             return $http.post(webIdeConfig.APP_URL + '/repository/structure/' + repositoryId + '/create/', data);
+        }
+
+        function renameEntity(repositoryId, source, destination) {
+            var data = {source: source, destination: destination};
+            return $http.put(webIdeConfig.APP_URL + '/repository/structure/' + repositoryId + '/rename/', data);
         }
 
         function createNewFile(path, repositoryId) {
