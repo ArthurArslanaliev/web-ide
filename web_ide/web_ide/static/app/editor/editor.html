@@ -1,6 +1,17 @@
 <div class="container-fluid">
+    <div class="row editor-top-bar">
+        <div class="col-md-10 line-height-100">
+            <span class="title">
+                &#x3C; webIde &#x3E;
+            </span>
+        </div>
+        <div class="col-md-2 line-height-100">
+            <a ng-href="{{ $user.userAccountUrl }}" target="_blank" ng-bind="$user.userLogin"></a>
+            <img ng-src="{{ $user.userAvatarUrl }}" height="30px" width="30px"/>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3 file-tree">
             <div data-angular-treeview="true"
                  data-tree-id="browser"
                  data-tree-model="structure"
@@ -9,7 +20,7 @@
                  data-node-children="children">
             </div>
         </div>
-        <div class="col-md-8" ng-if="showCodeEditor">
+        <div class="col-md-9" ng-if="showCodeEditor">
             <div class="ace-editor" ui-ace="aceOptions" ng-model="content"></div>
         </div>
         <img ng-if="!showCodeEditor" ng-src="{{ image }}">

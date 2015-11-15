@@ -1,16 +1,27 @@
-<div class="container">
-    <div class="centralized-form">
-        <h3>Choose repository</h3>
-
-        <div class="list-group">
-            <a href="#" class="list-group-item" ng-class="{ active: isMeChosen(repo) }" ng-click="choose(repo)"
-               ng-repeat="repo in repositories">
-                <h4 class="list-group-item-heading" ng-bind="repo.full_name"></h4>
-
-                <p class="list-group-item-text" ng-bind="repo.description"></p>
-            </a>
+<div class="container-fluid background">
+    <div class="sing-in-form">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3>Choose repository</h3>
+            </div>
         </div>
-        <button class="btn btn-success" ng-disabled="!chosen" ng-click="loadEditor()">Let's start!</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="list-group">
+                    <a href="#" class="list-group-item" ng-class="{ active: isMeChosen(repo) }" ng-click="choose(repo)"
+                       ng-repeat="repo in repositories">
+                        <h4 class="list-group-item-heading" ng-bind="repo.full_name"></h4>
+
+                        <p class="list-group-item-text" ng-bind="repo.description"></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button class="btn btn-success" ng-disabled="!chosen" ng-click="loadEditor()">Start coding! =&#x3E;</button>
+            </div>
+        </div>
     </div>
 </div>
 

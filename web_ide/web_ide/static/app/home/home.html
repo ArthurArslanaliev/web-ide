@@ -1,11 +1,38 @@
-<div class="container">
-    <div class="centralized-form text-center" ng-if="!isUserLoggedIn">
-        <h2>Sign in</h2>
-        <button class="btn btn-primary" ng-click="login()">Sign in with GitHub</button>
+<div class="container-fluid background">
+    <div class="sing-in-form text-center" ng-if="!isUserLoggedIn">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="logo-title">&#x3C; webIde &#x3E;</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Sign in using your <a href="https://github.com/" target="_blank">Github</a> account</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-primary" ng-click="login()">Get Started!</button>
+            </div>
+        </div>
     </div>
-    <div class="centralized-form text-center" ng-if="isUserLoggedIn">
-        <h2>Welcome back <a ng-href="{{ user.userAccountUrl }}" target="_blank" ng-bind="user.userLogin"></a>!</h2>
-        <button class="btn btn-info" ui-sref="repositories">Choose repository</button>
-        <button class="btn btn-primary" ng-click="logout()">Logout</button>
+    <div class="sing-in-form text-center" ng-if="isUserLoggedIn">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="logo-title">&#x3C; webIde &#x3E;</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Welcome back <a ng-href="{{ user.userAccountUrl }}" target="_blank" ng-bind="user.userLogin"></a>!
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-info" ui-sref="repositories">Choose repository</button>
+                <button class="btn btn-primary" ng-click="logout()">Logout</button>
+            </div>
+        </div>
     </div>
 </div>
