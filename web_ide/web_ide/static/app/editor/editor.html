@@ -5,7 +5,7 @@
                 &#x3C; webIde &#x3E;
             </span>
         </div>
-        <div class="col-md-2 line-height-100">
+        <div class="col-md-2 line-height-100 padding-left">
             <a ng-href="{{ $user.userAccountUrl }}" target="_blank" ng-bind="$user.userLogin"></a>
             <img ng-src="{{ $user.userAvatarUrl }}" height="30px" width="30px"/>
         </div>
@@ -33,6 +33,9 @@
     </div>
 
     <div id="editorSaveBtn">
+        <span class="glyphicon glyphicon-play" aria-hidden="true" ng-click="preview()"></span>
+        <span class="glyphicon glyphicon-indent-left" aria-hidden="true" ng-click="formatCode()"></span>
+        <span class="glyphicon glyphicon-search" aria-hidden="true" ng-click="openSearch()"></span>
         <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" ng-click="saveContent()"></span>
     </div>
 </div>

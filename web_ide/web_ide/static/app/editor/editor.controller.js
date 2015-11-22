@@ -34,6 +34,9 @@
 
         $scope.showContextMenu = showContextMenu;
         $scope.saveContent = saveContent;
+        $scope.preview = preview;
+        $scope.formatCode = formatCode;
+        $scope.openSearch = openSearch;
 
         $scope.aceOptions = {
             onLoad: aceOnLoad
@@ -156,6 +159,16 @@
                     breakLine: true
                 });
             });
+        }
+
+        function preview() {
+        }
+
+        function formatCode() {
+        }
+
+        function openSearch() {
+            aceEditor.execCommand('find');
         }
     }
 
