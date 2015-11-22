@@ -2,3 +2,4 @@ django_static_dir: /vagrant/web_ide/web_ide/static
 server_name: 127.0.0.1
 listen: 8000
 media_root: /vagrant/web_ide/web_ide/media
+tmp_dir: /tmp

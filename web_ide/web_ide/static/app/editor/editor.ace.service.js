@@ -8,7 +8,9 @@
     function aceService() {
         var modesMap = {
             'js': 'ace/mode/javascript',
-            'css': 'ace/mode/css'
+            'css': 'ace/mode/css',
+            'html': 'ace/mode/html',
+            'json': 'ace/mode/json'
             },
             DEFAULT_MODE = 'ace/mode/text';
 

@@ -26,5 +26,5 @@ class LocalRepositoryService(object):
         g = git.Git(local_repository_path)
         try:
             return g.execute(command.split(' '))
-        except git.exc.GitCommandNotFound as e:
+        except (git.exc.GitCommandNotFound, git.exc.GitCommandError) as e:
             return "Error running: {}. Error: {}".format(command, e)

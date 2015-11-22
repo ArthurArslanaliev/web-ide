@@ -10,7 +10,7 @@
             <img ng-src="{{ $user.userAvatarUrl }}" height="30px" width="30px"/>
         </div>
     </div>
-    <div class="row">
+    <div class="row main-row">
         <div class="col-md-3 file-tree">
             <div data-angular-treeview="true"
                  data-tree-id="browser"
@@ -26,10 +26,7 @@
         <img ng-if="!showCodeEditor" ng-src="{{ image }}">
     </div>
     <div class="row">
-        <div class="col-md-4">
-            GitRepoViewer
-        </div>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <terminal class="terminal">
             </terminal>
         </div>

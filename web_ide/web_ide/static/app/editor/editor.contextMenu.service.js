@@ -56,6 +56,14 @@
                 // Show confirmation modal
             }
         ];
+        var run = [
+            'Preview',
+
+            function ($itemScope) {
+                var path = '/preview/' + $itemScope.node.id;
+                window.open(path, '_blank');
+            }
+        ];
 
 
         this.getContextMenu = getContextMenu;
@@ -68,6 +76,8 @@
             if (item.children) {
                 menuOpt.push(createNewFolder);
                 menuOpt.push(createNewFile);
+            } else {
+                menuOpt.push(run);
             }
             menuOpt.push(rename);
             menuOpt.push(deleteOpt);
